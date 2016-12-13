@@ -8,10 +8,10 @@ import java.io.File;
 public class FileItem {
 
     String fileName;
-    String taille;
+    Long taille;
     boolean isDir;
 
-    public FileItem(String fileNameExt, String taille, boolean isDir){
+    public FileItem(String fileNameExt, Long taille, boolean isDir){
         this.fileName = fileNameExt;
         this.taille = taille;
         this.isDir = isDir;
@@ -21,7 +21,7 @@ public class FileItem {
         return fileName;
     }
 
-    public String getTaille() {
+    public Long getTaille() {
         return taille;
     }
 
@@ -37,7 +37,7 @@ public class FileItem {
         this.fileName = fileName;
     }
 
-    public void setTaille(String taille) {
+    public void setTaille(Long taille) {
         this.taille = taille;
     }
 }
