@@ -26,8 +26,11 @@ public class ListFileActivity extends ListActivity {
         if(f.canRead()){
             FileItem[] files = getFiles(f);
             this.setListAdapter(new FileAdapter(this,R.layout.fragment_listview,files));
+            //robz
+            new String[] {"img", "nom", "taille"}, new int[] {R.id.img, R.id.txtnom, R.id.txttaille,});
+            //robz
         }
-
+        
 
 
 
