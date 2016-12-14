@@ -16,13 +16,10 @@ import java.io.File;
 /**
  * Created by julien on 09/12/16.
  */
+
 public class ZoomActivity extends Activity {
 
     public static final String EXTRA_IMG = "image";
-
-    //begz
-    
-    //TEST
 
     ImageView imageView;
     Matrix matrix = new Matrix();
