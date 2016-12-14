@@ -1,7 +1,5 @@
 package fr.hei.projetandroid.activites;
 
-import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,17 +8,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.PopupMenu;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
-import fr.hei.projetandroid.R;
 
 import java.io.File;
 import java.io.FileFilter;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import fr.hei.projetandroid.R;
 
 public class ListFileActivity extends AppCompatActivity {
 
