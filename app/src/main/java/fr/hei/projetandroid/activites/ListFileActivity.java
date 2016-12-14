@@ -30,9 +30,6 @@ public class ListFileActivity extends ListActivity {
             new String[] {"img", "nom", "taille"}, new int[] {R.id.img, R.id.txtnom, R.id.txttaille,});
             //robz
         }
-        
-
-
 
     }
 

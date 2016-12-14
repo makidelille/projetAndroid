@@ -21,11 +21,13 @@ public class ZoomActivity extends Activity {
     public static final String EXTRA_IMG = "image";
 
     //begz
+    
+    //TEST
 
     ImageView imageView;
     Matrix matrix = new Matrix();
     Float scale = 1f;
-    ScaleGestureDetector Detector;
+    ScaleGestureDetector detector;
 
 
     @Override
@@ -45,7 +47,8 @@ public class ZoomActivity extends Activity {
         bitmap = Bitmap.createBitmap(bitmap);
         imageView = (ImageView) findViewById(R.id.imageView);
         imageView.setImageBitmap(bitmap);
-        Detector = new ScaleGestureDetector(this, new ScaleGestureDetector.SimpleOnScaleGestureListener() {
+
+        detector = new ScaleGestureDetector(this, new ScaleGestureDetector.SimpleOnScaleGestureListener(){
             @Override
             public boolean onScale (ScaleGestureDetector detector){
                 scale = scale*detector.getScaleFactor();
@@ -58,7 +61,7 @@ public class ZoomActivity extends Activity {
     }
 
     public boolean onTouchEvent(MotionEvent event) {
-        Detector.onTouchEvent(event);
+        detector.onTouchEvent(event);
         return true;
     }
 }
