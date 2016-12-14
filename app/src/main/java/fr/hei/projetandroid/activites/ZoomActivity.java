@@ -21,6 +21,8 @@ public class ZoomActivity extends Activity {
     public static final String EXTRA_IMG = "image";
 
     //begz
+    
+    //TEST
 
     ImageView imageView;
     Matrix matrix = new Matrix();
