@@ -21,10 +21,10 @@ public class ZoomActivity extends Activity {
 
     public static final String EXTRA_IMG = "image";
 
-    ImageView imageView;
-    Matrix matrix = new Matrix();
-    Float scale = 1f;
-    ScaleGestureDetector detector;
+    private ImageView imageView;
+    private Matrix matrix = new Matrix();
+    private Float scale = 1f;
+    private ScaleGestureDetector detector;
 
 
     @Override

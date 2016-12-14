@@ -95,12 +95,12 @@ public class ListFileActivity extends AppCompatActivity {
 
             };
             File[] childs = f.listFiles(imgFilter);
-            for (int i = 0; i < childs.length; i++) {
+            for (File child : childs) {
                 fichier = new HashMap<>();
-                fichier.put("img", String.valueOf(childs[i].isDirectory() ? R.drawable.dossieric : R.drawable.fichieric));
-                fichier.put("nom", childs[i].getName());
-                fichier.put("taille", String.valueOf(childs[i].length()) + "bytes");
-                fichier.put("path",childs[i].getAbsolutePath());
+                fichier.put("img", String.valueOf(child.isDirectory() ? R.drawable.dossieric : R.drawable.fichieric));
+                fichier.put("nom", child.getName());
+                fichier.put("taille", String.valueOf(child.length()) + "bytes");
+                fichier.put("path", child.getAbsolutePath());
                 ret.add(fichier);
             }
         }
