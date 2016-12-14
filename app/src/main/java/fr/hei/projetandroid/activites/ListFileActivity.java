@@ -58,6 +58,12 @@ public class ListFileActivity extends AppCompatActivity {
 
     private ArrayList<HashMap<String,String>> getFiles(File f) {
         ArrayList<HashMap<String,String>> ret = new ArrayList<>();
+        HashMap<String,String> fichier = new HashMap<>();
+        fichier.put("img", String.valueOf(R.drawable.dossieric));
+        fichier.put("nom", "..");
+        fichier.put("taille", ".");
+        fichier.put("path",f.getParent());
+        ret.add(fichier);
         if(f.canRead()) {
             FileFilter imgFilter = new FileFilter() {
 
@@ -70,7 +76,7 @@ public class ListFileActivity extends AppCompatActivity {
             };
             File[] childs = f.listFiles(imgFilter);
             for (int i = 0; i < childs.length; i++) {
-                HashMap<String, String> fichier = new HashMap<>();
+                fichier = new HashMap<>();
                 fichier.put("img", String.valueOf(childs[i].isDirectory() ? R.drawable.dossieric : R.drawable.fichieric));
                 fichier.put("nom", childs[i].getName());
                 fichier.put("taille", childs[i].isDirectory() ? "." : String.valueOf(childs[i].length()));
@@ -78,12 +84,7 @@ public class ListFileActivity extends AppCompatActivity {
                 ret.add(fichier);
             }
         }
-        HashMap<String,String> fichier = new HashMap<>();
-        fichier.put("img", String.valueOf(R.drawable.dossieric));
-        fichier.put("nom", "..");
-        fichier.put("taille", ".");
-        fichier.put("path",f.getParent());
-        ret.add(fichier);
+
 
         return ret;
 

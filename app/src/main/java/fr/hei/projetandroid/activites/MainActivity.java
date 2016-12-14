@@ -26,6 +26,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_main);
+
+        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+        path = preferences.getString(PREF_PATH,DEF_PATH);
+
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -36,20 +40,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent it = new Intent(v.getContext(), ZoomActivity.class);
-                it.putExtra(ZoomActivity.EXTRA_IMG,"/storage/3331-3234/DCIM/100ANDRO/DSC_0010.JPG");
-                startActivity(it);
-            }
-        });
 
 
+
+    }
+
+    public void save(){
         SharedPreferences preferences = getPreferences(MODE_PRIVATE);
-        path = preferences.getString(PREF_PATH,DEF_PATH);
-
-
-
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(PREF_PATH,"");
+        editor.commit();
+        editor.apply();
     }
 }
