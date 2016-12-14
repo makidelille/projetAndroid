@@ -25,7 +25,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     public static final String PREF_PATH = "PathPref";
-    private static final String DEF_PATH = "/";
+    private static final String DEF_PATH = "/storage/emulated/0/Pictures/";
 
     private String path;
     Button button1;
