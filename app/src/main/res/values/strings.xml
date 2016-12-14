@@ -2,4 +2,5 @@
     <string name="app_name">ProjetAndroid</string>
     <string name="parcourir">Parcourir</string>
     <string name="sauvergarder">Sauvegarder</string>
+    <string name="savetoast">Emplacement sauvegarder</string>
 </resources>

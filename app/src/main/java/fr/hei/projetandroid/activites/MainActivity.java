@@ -1,8 +1,10 @@
 package fr.hei.projetandroid.activites;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
@@ -20,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_main);
 
-        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         path = preferences.getString(PREF_PATH,DEF_PATH);
 
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
@@ -33,8 +35,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
 
-
-
+    public static void save(String path, Context context){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(MainActivity.PREF_PATH,path);
+        editor.apply();
     }
 }

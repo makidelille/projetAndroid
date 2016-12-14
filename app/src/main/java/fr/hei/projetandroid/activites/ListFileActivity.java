@@ -16,6 +16,7 @@ import java.io.FileFilter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import android.widget.Toast;
 import fr.hei.projetandroid.R;
 
 public class ListFileActivity extends AppCompatActivity {
@@ -32,7 +33,8 @@ public class ListFileActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_save) {
-            save(path);
+            MainActivity.save(path,getBaseContext());
+            Toast.makeText(this,R.string.savetoast,Toast.LENGTH_SHORT).show();
         }
         return true;
     }
@@ -97,7 +99,7 @@ public class ListFileActivity extends AppCompatActivity {
                 fichier = new HashMap<>();
                 fichier.put("img", String.valueOf(childs[i].isDirectory() ? R.drawable.dossieric : R.drawable.fichieric));
                 fichier.put("nom", childs[i].getName());
-                fichier.put("taille", childs[i].isDirectory() ? "." : String.valueOf(childs[i].length()));
+                fichier.put("taille", String.valueOf(childs[i].length()) + "bytes");
                 fichier.put("path",childs[i].getAbsolutePath());
                 ret.add(fichier);
             }
@@ -106,14 +108,5 @@ public class ListFileActivity extends AppCompatActivity {
 
         return ret;
 
-    }
-
-
-    public void save(String path){
-        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString(MainActivity.PREF_PATH,path);
-        editor.commit();
-        editor.apply();
     }
 }
