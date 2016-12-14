@@ -45,6 +45,8 @@ public class ZoomActivity extends Activity {
         bitmap = Bitmap.createBitmap(bitmap);
         imageView = (ImageView) findViewById(R.id.imageView);
         imageView.setImageBitmap(bitmap);
+
+
         Detector = new ScaleGestureDetector(this, new ScaleGestureDetector.SimpleOnScaleGestureListener() {
             @Override
             public boolean onScale (ScaleGestureDetector detector){
