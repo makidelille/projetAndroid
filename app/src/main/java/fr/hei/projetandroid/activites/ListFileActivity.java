@@ -3,11 +3,16 @@ package fr.hei.projetandroid.activites;
 import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import fr.hei.projetandroid.R;
@@ -22,13 +27,30 @@ public class ListFileActivity extends AppCompatActivity {
     public static final String EXTRA_PATH = "path";
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //ajoute les entrées de menu_test à l'ActionBar
+        getMenuInflater().inflate(R.menu.popup_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_save) {
+            save(path);
+        }
+        return true;
+    }
+
+    private String path;
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
         final ListView lv = (ListView) this.findViewById(R.id.listView);
 
         Intent it = getIntent();
-        String path  = it.hasExtra(EXTRA_PATH) ? it.getStringExtra(EXTRA_PATH) :  "/";
+        path  = it.hasExtra(EXTRA_PATH) ? it.getStringExtra(EXTRA_PATH) :  "/";
         this.setTitle(path);
         File f = new File(path);
         ArrayList<HashMap<String,String>> files = getFiles(f);
@@ -88,5 +110,14 @@ public class ListFileActivity extends AppCompatActivity {
 
         return ret;
 
+    }
+
+
+    public void save(String path){
+        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(MainActivity.PREF_PATH,path);
+        editor.commit();
+        editor.apply();
     }
 }

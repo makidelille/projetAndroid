@@ -7,8 +7,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import fr.hei.projetandroid.R;
+
+
+import android.view.MenuItem;
+import android.view.View.OnClickListener;
+import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -17,10 +24,11 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String PREF_PATH = "PathPref";
+    public static final String PREF_PATH = "PathPref";
     private static final String DEF_PATH = "/";
 
     private String path;
+    Button button1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,15 +48,40 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        button1 = (Button) findViewById(R.id.action_save);
+        button1.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                PopupMenu popup = new PopupMenu(MainActivity.this, button1);
+
+                popup.getMenuInflater().inflate(R.menu.popup_menu, popup.getMenu());
+
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    public boolean onMenuItemClick(MenuItem item) {
+                        if (item.getItemId() == R.id.action_save) {
+                            save("");
+                        }
+                        return true;
+                    }
+                });
+
+
+                popup.show();
+
+            }
+        });
+
 
 
 
     }
 
-    public void save(){
+    public void save(String path){
         SharedPreferences preferences = getPreferences(MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString(PREF_PATH,"");
+        editor.putString(PREF_PATH,path);
         editor.commit();
         editor.apply();
     }
